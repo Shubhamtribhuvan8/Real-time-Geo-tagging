@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -9,12 +10,10 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Input, InputLabel } from "@mui/material";
 import { toast } from "react-toastify";
-
 function PostComponent() {
   const [username, setUsername] = useState("");
   const [description, setDescription] = useState("");
   const [open, setOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
   const [dataImage, setDataImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
 
@@ -42,10 +41,10 @@ function PostComponent() {
         "https://api.cloudinary.com/v1_1/dgqt5ockx/image/upload",
         data
       );
-      setImageUrl(response.data.url);
-      console.log(response.data.url);
+      return response.data.url;
     } catch (error) {
       console.log(error);
+      throw error;
     }
   };
 
@@ -58,57 +57,30 @@ function PostComponent() {
     }
 
     try {
-      await CloudinaryUpload(dataImage);
+      const imageUrl = await CloudinaryUpload(dataImage);
       const data = {
         title: username,
         description: description,
         images: imageUrl,
       };
-      console.log("cloudinary ke andar", imageUrl);
-      const response = await axios.post(
+
+      const response1 = await axios.post(
         "http://localhost:8080/geotag/image",
         data
       );
-      console.log(response.data);
-      toast.success("Post added!");
-    } catch (error) {
-      console.error(error);
-      toast.error("Post failed to add!");
-    }
-  };
 
-  const handleSecondSubmit = async () => {
-    if (!dataImage) {
-      toast.error("Please upload an image!");
-      return;
-    }
-
-    try {
-      await CloudinaryUpload(dataImage);
-      const data = {
-        title: username,
-        description: description,
-        images: imageUrl,
-      };
-      console.log("cloudinary ke andar", imageUrl);
-      const response = await axios.post(
-        "https://dull-plum-stingray-suit.cyclic.app/record",
-        data
-      );
-      console.log(response.data);
-      toast.success("Done!");
+      toast.success("Post added and done!");
       setOpen(false);
     } catch (error) {
       console.error(error);
-      toast.error("Something Error!");
+      toast.error("Post failed to add or something went wrong!");
     }
   };
 
   return (
     <div>
-      <br />
       <Button variant="outlined" onClick={handleClickOpen}>
-        Post Somethings!
+        Post Something!
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Do Post Something...!</DialogTitle>
@@ -156,12 +128,10 @@ function PostComponent() {
           </form>
         </DialogContent>
         <DialogActions>
-          {/* <Button onClick={handleClose}>Cancel</Button> */}
-          <Button onClick={handleSecondSubmit}>Close</Button>
+          <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-
 export default PostComponent;
