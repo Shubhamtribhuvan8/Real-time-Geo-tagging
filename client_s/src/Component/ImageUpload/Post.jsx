@@ -19,6 +19,7 @@ function PostComponent() {
   const [previewImage, setPreviewImage] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [locationame, setlocationame] = useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,6 +27,8 @@ function PostComponent() {
 
   const handleClose = () => {
     setOpen(false);
+    setUsername("");
+    setDescription("");
   };
 
   const handleImage = (e) => {
@@ -67,6 +70,7 @@ function PostComponent() {
         images: imageUrl,
         latitude: latitude,
         longitude: longitude,
+        locationame: locationame,
       };
 
       const response = await axios.post(
@@ -88,20 +92,31 @@ function PostComponent() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            axios
+              .get(
+                `https://api.opencagedata.com/geocode/v1/json?key=87e7d07a013d445a8d433990ca559828&q=${latitude}+${longitude}`
+              )
+              .then((response) => {
+                const locationName =
+                  response.data.results[0].formatted || "Unknown Location";
+                setlocationame(locationName);
+                console.log(locationName);
+              })
+              .catch((error) => {
+                console.error(error);
+                toast.error("Failed to retrieve location information");
+              });
           },
           (error) => {
             console.error(error);
             toast.error("Failed to retrieve your location");
           }
         );
-      } else {
-        toast.error("Geolocation is not supported by your browser");
       }
     };
-
-    // Ask for permission and get location when the component mounts
     getLocation();
   }, []);
 

@@ -25,14 +25,14 @@ const GetComponent = () => {
       fetchData();
       const interval = setInterval(() => {
         fetchData();
-      }, 2000);
+      }, 20000);
       return () => {
         clearInterval(interval);
       };
     } else {
       setTimeout(() => {
         navigate("/");
-      }, 100);
+      }, 7000);
       toast.error("Login First!");
     }
   }, [navigate]);
@@ -41,6 +41,7 @@ const GetComponent = () => {
     try {
       const response = await axios.get("http://localhost:8080/geotag/image");
       setAllDetails(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -92,6 +93,9 @@ const GetComponent = () => {
                     </Typography>{" "}
                     <Typography variant="caption" color="inherit">
                       Longitude: {record.longitude}
+                    </Typography>{" "}
+                    <Typography variant="caption" color="inherit">
+                      locationame: {record.locationame}
                     </Typography>
                   </div>
                 </div>
