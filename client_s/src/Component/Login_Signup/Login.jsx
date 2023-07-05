@@ -44,7 +44,7 @@ function Login() {
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
       );
       setTimeout(() => {
-        navigate("/");
+        navigate("/imagepost");
       }, 5000);
       successSound.play();
       toast.success("Welcome!");
