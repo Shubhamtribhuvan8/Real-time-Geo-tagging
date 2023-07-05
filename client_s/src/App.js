@@ -1,11 +1,13 @@
 import "./App.css";
-
+import NavBar from "./Component/Navbar";
+import Routers from "./Component/Router";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <div className="App">
-      <h1>Shubham</h1>
-      <h1>Shubham</h1> <h1>Shubham</h1>
-      <h1>Shubham</h1>
+      <ToastContainer />
+      <NavBar />
+      <Routers />
     </div>
   );
 }

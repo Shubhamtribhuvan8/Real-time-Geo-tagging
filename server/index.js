@@ -8,8 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 dotenv.config();
-app.use("/login", LoginRouter);
-app.use("/register", routerss);
+app.use("/geotag", LoginRouter);
+app.use("/geotag", routerss);
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
   try {
