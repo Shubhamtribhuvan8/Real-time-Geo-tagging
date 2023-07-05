@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -19,7 +18,7 @@ function PostComponent() {
   const [previewImage, setPreviewImage] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [locationame, setlocationame] = useState(null);
+  const [locationName, setLocationName] = useState("Unknown Location");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,11 +28,13 @@ function PostComponent() {
     setOpen(false);
     setUsername("");
     setDescription("");
+    setDataImage(null);
+    setPreviewImage(null);
   };
 
   const handleImage = (e) => {
-    const data = new FormData();
     const selectedImage = e.target.files[0];
+    const data = new FormData();
     data.append("file", selectedImage);
     data.append("upload_preset", "Tumblr");
     data.append("cloud_name", "dgqt5ockx");
@@ -41,7 +42,7 @@ function PostComponent() {
     setPreviewImage(URL.createObjectURL(selectedImage));
   };
 
-  const CloudinaryUpload = async (data) => {
+  const cloudinaryUpload = async (data) => {
     try {
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dgqt5ockx/image/upload",
@@ -63,22 +64,23 @@ function PostComponent() {
     }
 
     try {
-      const imageUrl = await CloudinaryUpload(dataImage);
+      const imageUrl = await cloudinaryUpload(dataImage);
       const data = {
         title: username,
         description: description,
         images: imageUrl,
         latitude: latitude,
         longitude: longitude,
-        locationame: locationame,
+        locationName: locationName,
       };
 
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.post(
         "http://localhost:8080/geotag/image",
         data
       );
 
-      toast.success("Post added and done!");
+      toast.success("Post added!");
       setOpen(false);
     } catch (error) {
       console.error(error);
@@ -94,6 +96,8 @@ function PostComponent() {
           (position) => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
+            setLatitude(latitude);
+            setLongitude(longitude);
 
             axios
               .get(
@@ -101,8 +105,8 @@ function PostComponent() {
               )
               .then((response) => {
                 const locationName =
-                  response.data.results[0].formatted || "Unknown Location";
-                setlocationame(locationName);
+                  response.data.results[0]?.formatted || "Unknown Location";
+                setLocationName(locationName);
                 console.log(locationName);
               })
               .catch((error) => {
