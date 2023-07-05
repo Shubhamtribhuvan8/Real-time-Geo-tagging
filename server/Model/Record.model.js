@@ -10,6 +10,12 @@ const recordSchema = new mongoose.Schema({
   images: {
     type: String,
   },
+  latitude: {
+    type: String,
+  },
+  longitude: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -73,12 +73,29 @@ const GetComponent = () => {
           Details.map((record) => (
             <Card key={record._id} sx={{ maxWidth: isMobile ? "100%" : 345 }}>
               <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={record.images}
-                  alt="Record Image"
-                />
+                <div style={{ position: "relative" }}>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={record.images}
+                    alt="Record Image"
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "94px",
+                      left: "191px",
+                    }}
+                  >
+                    <Typography variant="caption" color="inherit">
+                      Latitude: {record.latitude}
+                    </Typography>{" "}
+                    <Typography variant="caption" color="inherit">
+                      Longitude: {record.longitude}
+                    </Typography>
+                  </div>
+                </div>
+
                 <CardContent style={{ width: "100%" }}>
                   <Typography gutterBottom variant="h5" component="div">
                     {record.title}

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -10,12 +10,15 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Input, InputLabel } from "@mui/material";
 import { toast } from "react-toastify";
+
 function PostComponent() {
   const [username, setUsername] = useState("");
   const [description, setDescription] = useState("");
   const [open, setOpen] = useState(false);
   const [dataImage, setDataImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -62,9 +65,11 @@ function PostComponent() {
         title: username,
         description: description,
         images: imageUrl,
+        latitude: latitude,
+        longitude: longitude,
       };
 
-      const response1 = await axios.post(
+      const response = await axios.post(
         "http://localhost:8080/geotag/image",
         data
       );
@@ -76,6 +81,29 @@ function PostComponent() {
       toast.error("Post failed to add or something went wrong!");
     }
   };
+
+  useEffect(() => {
+    // Get the user's current location
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+          },
+          (error) => {
+            console.error(error);
+            toast.error("Failed to retrieve your location");
+          }
+        );
+      } else {
+        toast.error("Geolocation is not supported by your browser");
+      }
+    };
+
+    // Ask for permission and get location when the component mounts
+    getLocation();
+  }, []);
 
   return (
     <div>
@@ -134,4 +162,5 @@ function PostComponent() {
     </div>
   );
 }
+
 export default PostComponent;
