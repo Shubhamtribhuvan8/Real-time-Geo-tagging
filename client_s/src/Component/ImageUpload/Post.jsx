@@ -87,9 +87,7 @@ function PostComponent() {
       toast.error("Post failed to add or something went wrong!");
     }
   };
-
   useEffect(() => {
-    // Get the user's current location
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -98,21 +96,7 @@ function PostComponent() {
             const longitude = position.coords.longitude;
             setLatitude(latitude);
             setLongitude(longitude);
-
-            axios
-              .get(
-                `https://api.opencagedata.com/geocode/v1/json?key=87e7d07a013d445a8d433990ca559828&q=${latitude}+${longitude}`
-              )
-              .then((response) => {
-                const locationName =
-                  response.data.results[0]?.formatted || "Unknown Location";
-                setLocationName(locationName);
-                console.log(locationName);
-              })
-              .catch((error) => {
-                console.error(error);
-                toast.error("Failed to retrieve location information");
-              });
+            fetchLocationName(latitude, longitude);
           },
           (error) => {
             console.error(error);
@@ -121,8 +105,26 @@ function PostComponent() {
         );
       }
     };
+
+    const fetchLocationName = (latitude, longitude) => {
+      axios
+        .get(
+          `https://api.opencagedata.com/geocode/v1/json?key=87e7d07a013d445a8d433990ca559828&q=${latitude}+${longitude}`
+        )
+        .then((response) => {
+          const locationName =
+            response.data.results[0]?.formatted || "Unknown Location";
+          setLocationName(locationName);
+          console.log(locationName);
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error("Failed to retrieve location information");
+        });
+    };
+
     getLocation();
-  }, []);
+  }, [latitude, longitude]);
 
   return (
     <div>

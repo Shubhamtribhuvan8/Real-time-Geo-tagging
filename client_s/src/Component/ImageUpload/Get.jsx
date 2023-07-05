@@ -41,7 +41,6 @@ const GetComponent = () => {
     try {
       const response = await axios.get("http://localhost:8080/geotag/image");
       setAllDetails(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -74,9 +73,10 @@ const GetComponent = () => {
           Details.map((record) => (
             <Card key={record._id} sx={{ maxWidth: isMobile ? "100%" : 345 }}>
               <CardActionArea>
-                <div style={{ position: "relative", height: "13rem" }}>
+                <div style={{ position: "relative" }}>
                   <CardMedia
                     component="img"
+                    height="200px"
                     image={record.images}
                     alt="Record Image"
                   />
