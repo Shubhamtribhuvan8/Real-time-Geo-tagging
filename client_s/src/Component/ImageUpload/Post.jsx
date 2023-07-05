@@ -18,8 +18,9 @@ function PostComponent() {
   const [previewImage, setPreviewImage] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [locationName, setLocationName] = useState("");
-  // const [locationName2, setLocationName2] = useState("");
+  const [locationName2, setLocationName2] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -72,7 +73,7 @@ function PostComponent() {
         images: imageUrl,
         latitude: latitude,
         longitude: longitude,
-        locationName: locationName,
+        locationName: locationName2,
       };
 
       // eslint-disable-next-line no-unused-vars
@@ -108,17 +109,17 @@ function PostComponent() {
     };
 
     const fetchLocationName = (latitude, longitude) => {
-      // axios
-      //   .get("http://localhost:8080/geotag/ipinfo")
-      //   .then((response) => {
-      //     const city = response.data.city;
-      //     setLocationName2(city);
-      //     console.log(city);
-      //   })
-      //   .catch((error) => {
-      //     console.error(error);
-      //     toast.error("Failed to retrieve location information");
-      //   });
+      axios
+        .get("http://localhost:8080/geotag/ipinfo")
+        .then((response) => {
+          const city = response.data.city.name;
+          setLocationName2(city);
+          console.log(city);
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error("Failed to retrieve location information");
+        });
       axios
         .get(
           `https://api.opencagedata.com/geocode/v1/json?key=995bfff87a984344b1fec4b56817cc54&q=${latitude}+${longitude}`
