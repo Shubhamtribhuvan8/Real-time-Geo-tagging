@@ -48,6 +48,7 @@ const GetComponent = () => {
 
   return (
     <Box>
+      <br />
       <Box
         style={{
           display: "flex",
