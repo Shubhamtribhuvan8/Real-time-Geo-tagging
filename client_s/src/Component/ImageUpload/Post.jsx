@@ -21,7 +21,7 @@ function PostComponent() {
   // eslint-disable-next-line no-unused-vars
   const [locationame, setLocationName] = useState("");
   const [locationName2, setLocationName2] = useState("");
-
+  const [name, setname] = useState("");
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -76,6 +76,7 @@ function PostComponent() {
         latitude: latitude,
         longitude: longitude,
         locationame: locationame,
+        name: name,
       };
 
       // eslint-disable-next-line no-unused-vars
@@ -95,6 +96,8 @@ function PostComponent() {
     }
   };
   useEffect(() => {
+    const names = localStorage.getItem("name");
+    setname(names);
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -155,6 +158,7 @@ function PostComponent() {
               autoFocus
               margin="dense"
               id="title"
+              required="true"
               label="Title"
               type="text"
               fullWidth
@@ -164,6 +168,7 @@ function PostComponent() {
             />
             <TextField
               margin="dense"
+              required="true"
               id="description"
               label="Description"
               type="text"
@@ -174,7 +179,12 @@ function PostComponent() {
             />
             <InputLabel>
               Select an image to upload:
-              <Input type="file" accept="image/*" onChange={handleImage} />
+              <Input
+                type="file"
+                accept="image/*"
+                required="true"
+                onChange={handleImage}
+              />
             </InputLabel>
             {previewImage && (
               <div>

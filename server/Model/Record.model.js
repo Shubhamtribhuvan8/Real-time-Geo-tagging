@@ -19,6 +19,9 @@ const recordSchema = new mongoose.Schema({
   locationame: {
     type: String,
   },
+  name: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

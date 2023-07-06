@@ -43,12 +43,14 @@ function Login() {
         data
       );
       localStorage.setItem("papa", tokens.data.user.token);
+      localStorage.setItem("name", tokens.data.user.user.name);
+      console.log(tokens.data.user.user.name);
       const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
       );
       setTimeout(() => {
         navigate("/home");
-      }, 5000);
+      }, 1000);
       successSound.play();
       toast.success("Welcome!");
     } catch (error) {

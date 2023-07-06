@@ -12,6 +12,7 @@ import Logout from "../Login_Signup/Logout";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PostComponent from "./Post";
+import Avatar from "@mui/material/Avatar";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -127,6 +128,24 @@ const GetComponent = () => {
               sx={{ maxWidth: isMobile ? "100%" : 345 }}
             >
               <CardActionArea>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "initial",
+                    gap: "6px",
+                    alignItems: "center",
+                    top: "4px",
+                    left: "6px",
+                    position: "relative",
+                    marginBottom: "7px",
+                  }}
+                >
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj9ySx6w03MteA7LmBWIqr5C7rhqOdC8xY2SLkoAN03bMZfXmTVpRmcH3ewSR_pFpxqJM&usqp=CAU"
+                  />
+                  <Typography>{record.name || "Unknown"}</Typography>
+                </div>
                 <div style={{ position: "relative" }}>
                   <CardMedia
                     component="img"
