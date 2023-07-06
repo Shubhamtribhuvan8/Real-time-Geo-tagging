@@ -33,7 +33,7 @@ Clone the repository by running the following command in your terminal:
 
 ```git clone https://github.com/Shubhamtribhuvan8/Real-time-Geo-tagging.git```
 
-### Project Setup
+### Project Setup(Front-End)
 
  Navigate to the project folder using the following command:
  
@@ -50,3 +50,21 @@ Start the development server by running the following command:
 ```npm run dev```
 
 After a few seconds, the project will start, and you can access it at ```http://localhost:3000``` in your default browser.
+
+### Project Setup(Back-End)
+
+ Navigate to the project folder using the following command:
+ 
+```cd server```
+
+Install the required npm packages by running the following command:
+
+```npm install``` 
+
+## Running the Project
+
+Start the backend server by running the following command:
+
+```nodemon```
+
+After a few seconds, the backend  will start, and you can access it at ```http://localhost:8080``` in your default terminal.
