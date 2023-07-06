@@ -9,14 +9,15 @@
 ![mangodb](https://github.com/Shubhamtribhuvan8/Real-time-Geo-tagging/assets/106821254/c07f8f0f-71ba-47b2-94b8-be39d88595ca)
 
 
-# How it Works?
 # Features
-User Registration/Login: Users can create a new account, log into the system using their credentials, and log out when done.
-Image Upload: Users can upload images from their device, which are securely and efficiently stored.
-Geo-tagging: Each uploaded image is tagged with the user's current geographical location, with the user's permission.
-Image Display: The main page displays a real-time feed of images uploaded by users.
-Image Filtering: Users can filter the image feed based on location and see images tagged at a specific location.
-Real-time Updates: New images matching the current filter automatically appear in the feed without requiring a page refresh.
+
+## User Registration/Login: Users can create a new account, log into the system using their credentials, and log out when done.
+## Image Upload: Users can upload images from their device, which are securely and efficiently stored.
+## Geo-tagging: Each uploaded image is tagged with the user's current geographical location, with the user's permission.
+## Image Display: The main page displays a real-time feed of images uploaded by users.
+## Image Filtering: Users can filter the image feed based on location and see images tagged at a specific location.
+## Real-time Updates: New images matching the current filter automatically appear in the feed without requiring a page refresh.
+## 'like and dislike' feature for images.
 
 ## Prerequisites
 
