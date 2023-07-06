@@ -1,32 +1,26 @@
 import React from "react";
+import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { Button as MuiButton } from "@mui/material";
-function NavBar(props) {
-  var divStyle = {
-    padding: "20px",
-    backgroundColor: "black",
-    textAlign: "right",
-    display: "flex",
-    alignItems: "center",
-  };
-  var aStyle = {
-    textAlign: "start",
-    color: "white",
-    marginRight: "50px",
-    textDecoration: "none",
-  };
+export default function Navbar() {
   return (
-    <>
-      <div style={divStyle}>
-        <h1 style={aStyle}>Real time Geo-tagging </h1>
-        <Link style={aStyle} to="/home">
-          <MuiButton variant="contained" color="success">
-            Home
-          </MuiButton>
+    <div>
+      <header className="navbar">
+        <div className="navbar__title navbar__item">
+          <img
+            style={{ height: "46px" }}
+            src="https://cdn-icons-png.flaticon.com/512/2775/2775994.png"
+            alt=""
+          />
+          <h6>Real Time Geo-tagging App</h6>
+        </div>
+
+        <Link to={"/home"} className="navbar__link">
+          <div className="navbar__item">HOME</div>
         </Link>
-      </div>
-    </>
+        <Link to={"/home"} className="navbar__link">
+          <div className="navbar__item">GEO-LOCATION</div>
+        </Link>
+      </header>
+    </div>
   );
 }
-
-export default NavBar;

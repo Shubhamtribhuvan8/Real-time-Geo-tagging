@@ -96,7 +96,7 @@ const GetComponent = () => {
             onChange={handleFilterChange}
             value={selectedFilter || ""}
           >
-            <option value="">Filter By Category</option>
+            <option value="">Filter By Location</option>
             <option value="Pune">Pune</option>
             <option value="Mumbai">Mumbai</option>
             <option value="Ahmadabad">Ahmadabad</option>
