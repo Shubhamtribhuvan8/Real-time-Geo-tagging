@@ -9,7 +9,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Input, InputLabel } from "@mui/material";
 import { toast } from "react-toastify";
-
+import { useNavigate } from "react-router-dom";
 function PostComponent() {
   const [username, setUsername] = useState("");
   const [description, setDescription] = useState("");
@@ -19,7 +19,7 @@ function PostComponent() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   // eslint-disable-next-line no-unused-vars
-  const [locationName, setLocationName] = useState("");
+  const [locationame, setLocationName] = useState("");
   const [locationName2, setLocationName2] = useState("");
 
   const handleClickOpen = () => {
@@ -33,6 +33,7 @@ function PostComponent() {
     setDataImage(null);
     setPreviewImage(null);
   };
+  const navigate = useNavigate();
 
   const handleImage = (e) => {
     const selectedImage = e.target.files[0];
@@ -67,13 +68,14 @@ function PostComponent() {
 
     try {
       const imageUrl = await cloudinaryUpload(dataImage);
+      console.log(locationName2);
       const data = {
         title: username,
         description: description,
         images: imageUrl,
         latitude: latitude,
         longitude: longitude,
-        locationName: locationName2,
+        locationame: locationame,
       };
 
       // eslint-disable-next-line no-unused-vars
@@ -83,6 +85,9 @@ function PostComponent() {
       );
 
       toast.success("Post added!");
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
       setOpen(false);
     } catch (error) {
       console.error(error);
@@ -112,9 +117,7 @@ function PostComponent() {
       axios
         .get("http://localhost:8080/geotag/ipinfo")
         .then((response) => {
-          const city = response.data.city.name;
-          setLocationName2(city);
-          console.log(city);
+          setLocationName2(response.data.city);
         })
         .catch((error) => {
           console.error(error);
@@ -126,9 +129,8 @@ function PostComponent() {
         )
         .then((response) => {
           const locationName =
-            response.data.results[0]?.formatted || "Unknown Location";
+            response.data.results[0]?.components.city || "Unknown Location";
           setLocationName(locationName);
-          console.log(locationName);
         })
         .catch((error) => {
           console.error(error);

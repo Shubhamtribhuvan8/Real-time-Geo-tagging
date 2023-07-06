@@ -5,41 +5,52 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, CardActionArea } from "@mui/material";
+import Form from "react-bootstrap/Form";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Logout from "../Login_Signup/Logout";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PostComponent from "./Post";
+
 const GetComponent = () => {
   const [Details, setAllDetails] = useState([]);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [token, setToken] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState("");
 
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem("papa");
     setToken(token);
     if (token) {
-      fetchData();
-      const interval = setInterval(() => {
-        fetchData();
-      }, 20000);
-      return () => {
-        clearInterval(interval);
-      };
+      // const interval = setInterval(() => {
+      //   fetchData();
+      // }, 8000);
+      // return () => {
+      //   clearInterval(interval);
+      // };
     } else {
       setTimeout(() => {
         navigate("/");
-      }, 7000);
+      }, 3000);
       toast.error("Login First!");
     }
-  }, [navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const fetchData = async () => {
+  const handleFilterChange = (event) => {
+    fetchData(event.target.value);
+    setSelectedFilter(event.target.value);
+  };
+  const fetchData = async (selectedFilter) => {
+    console.log(selectedFilter);
     try {
-      const response = await axios.get("http://localhost:8080/geotag/image");
+      const response = await axios.get(
+        `http://localhost:8080/geotag/image?filter=${selectedFilter}`
+      );
       setAllDetails(response.data);
     } catch (error) {
       console.error(error);
@@ -61,6 +72,21 @@ const GetComponent = () => {
         {token && <PostComponent />}
       </Box>
       <br />
+      <Box>
+        <Form.Select
+          size="lg"
+          style={{ width: "10rem", textAlign: "center" }}
+          onChange={handleFilterChange}
+          value={selectedFilter || ""}
+        >
+          <option value="">Filter By Category</option>
+
+          <option value="Pune">Pune</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Ahmadabad">Ahmadabad</option>
+          <option value="Hydrabad">Hydrabad</option>
+        </Form.Select>
+      </Box>
       <br />
       <div
         style={{
@@ -71,7 +97,11 @@ const GetComponent = () => {
       >
         {Details &&
           Details.map((record) => (
-            <Card key={record._id} sx={{ maxWidth: isMobile ? "100%" : 345 }}>
+            <Card
+              elevation={3}
+              key={record._id}
+              sx={{ maxWidth: isMobile ? "100%" : 345 }}
+            >
               <CardActionArea>
                 <div style={{ position: "relative" }}>
                   <CardMedia
@@ -84,7 +114,7 @@ const GetComponent = () => {
                     style={{
                       position: "absolute",
                       top: "94px",
-                      left: "191px",
+                      left: "180px",
                     }}
                   >
                     <Typography variant="caption" color="inherit">
@@ -94,7 +124,7 @@ const GetComponent = () => {
                       Longitude: {record.longitude}
                     </Typography>{" "}
                     <Typography variant="caption" color="inherit">
-                      locationame: {record.locationame}
+                      Location: {record.locationame}
                     </Typography>
                   </div>
                 </div>
