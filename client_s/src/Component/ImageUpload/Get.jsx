@@ -106,7 +106,7 @@ const GetComponent = () => {
             <option value="Pune">Pune</option>
             <option value="Aurangabad">Aurangabad</option>
             <option value="Mumbai">Mumbai</option>
-            <option value="Ahmadabad">Ahmadabad</option>
+            <option value="Ahmedabad">Ahmadabad</option>
             <option value="Hydrabad">Hydrabad</option>
           </Form.Select>
         )}
