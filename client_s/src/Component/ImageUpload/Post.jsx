@@ -86,8 +86,8 @@ function PostComponent() {
 
       toast.success("Post added!");
       setTimeout(() => {
-        navigate("/");
-      }, 5000);
+        navigate("/home");
+      }, 2000);
       setOpen(false);
     } catch (error) {
       console.error(error);

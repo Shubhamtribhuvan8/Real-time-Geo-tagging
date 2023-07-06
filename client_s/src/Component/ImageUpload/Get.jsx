@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, CardActionArea } from "@mui/material";
+import { Box, Button, CardActionArea } from "@mui/material";
 import Form from "react-bootstrap/Form";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -26,12 +26,7 @@ const GetComponent = () => {
     const token = localStorage.getItem("papa");
     setToken(token);
     if (token) {
-      // const interval = setInterval(() => {
-      //   fetchData();
-      // }, 8000);
-      // return () => {
-      //   clearInterval(interval);
-      // };
+      fetchData("");
     } else {
       setTimeout(() => {
         navigate("/");
@@ -54,6 +49,16 @@ const GetComponent = () => {
       setAllDetails(response.data);
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const handleDelete = async (_id) => {
+    try {
+      await axios.delete(`http://localhost:8080/geotag/${_id}`);
+      toast.success("Record deleted successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to delete record");
     }
   };
 
@@ -139,9 +144,13 @@ const GetComponent = () => {
                   <Typography variant="body2" color="text.secondary">
                     {record.description}
                   </Typography>
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  ></div>
+                  <Button
+                    variant="outlined"
+                    style={{ width: "6rem" }}
+                    onClick={() => handleDelete(record._id)}
+                  >
+                    Delete
+                  </Button>
                 </CardContent>
               </CardActionArea>
             </Card>

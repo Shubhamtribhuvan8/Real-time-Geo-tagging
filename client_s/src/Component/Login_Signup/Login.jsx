@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { toast } from "react-toastify";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import Signup from "./Signup";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,7 @@ function Login() {
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
       );
       setTimeout(() => {
-        navigate("/");
+        navigate("/home");
       }, 5000);
       successSound.play();
       toast.success("Welcome!");
@@ -65,10 +65,11 @@ function Login() {
       <br />
       <Button
         variant="dark"
-        style={{ backgroundColor: "darkmagenta" }}
+        style={{ backgroundColor: "darkmagenta", fontSize: "16px" }}
         onClick={() => setShow(true)}
       >
-        <AccountCircleIcon style={{ fontSize: "40px" }} />
+        Login/SignUp
+        {/* <AccountCircleIcon style={{ fontSize: "40px" }} /> */}
       </Button>
 
       <Modal
