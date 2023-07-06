@@ -12,14 +12,16 @@ import Logout from "../Login_Signup/Logout";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PostComponent from "./Post";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 const GetComponent = () => {
   const [Details, setAllDetails] = useState([]);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [token, setToken] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState("");
-
+  const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,6 +63,9 @@ const GetComponent = () => {
       toast.error("Failed to delete record");
     }
   };
+  const LikePost = () => {
+    setLiked(!liked);
+  };
 
   return (
     <Box>
@@ -77,15 +82,20 @@ const GetComponent = () => {
         {token && <PostComponent />}
       </Box>
       <br />
-      <Box>
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Form.Select
           size="lg"
-          style={{ width: "10rem", textAlign: "center" }}
+          style={{ width: "14rem", textAlign: "initial" }}
           onChange={handleFilterChange}
           value={selectedFilter || ""}
         >
           <option value="">Filter By Category</option>
-
           <option value="Pune">Pune</option>
           <option value="Mumbai">Mumbai</option>
           <option value="Ahmadabad">Ahmadabad</option>
@@ -144,13 +154,22 @@ const GetComponent = () => {
                   <Typography variant="body2" color="text.secondary">
                     {record.description}
                   </Typography>
-                  <Button
-                    variant="outlined"
-                    style={{ width: "6rem" }}
-                    onClick={() => handleDelete(record._id)}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
                   >
-                    Delete
-                  </Button>
+                    {liked ? (
+                      <FavoriteIcon color="error" onClick={LikePost} />
+                    ) : (
+                      <FavoriteBorderIcon onClick={LikePost} />
+                    )}
+                    <Button onClick={() => handleDelete(record._id)}>
+                      <DeleteIcon />
+                    </Button>
+                  </div>
                 </CardContent>
               </CardActionArea>
             </Card>
