@@ -17,3 +17,36 @@ Geo-tagging: Each uploaded image is tagged with the user's current geographical 
 Image Display: The main page displays a real-time feed of images uploaded by users.
 Image Filtering: Users can filter the image feed based on location and see images tagged at a specific location.
 Real-time Updates: New images matching the current filter automatically appear in the feed without requiring a page refresh.
+
+## Prerequisites
+
+- Node.js (version 12 or above)
+- npm (Node Package Manager)
+
+## Getting Started
+
+To get started with this project, follow the steps below.
+
+### Clone the Repository
+
+Clone the repository by running the following command in your terminal:
+
+```git clone https://github.com/Shubhamtribhuvan8/Real-time-Geo-tagging.git```
+
+### Project Setup
+
+ Navigate to the project folder using the following command:
+ 
+```cd client_s```
+
+Install the required npm packages by running the following command:
+
+```npm install``` 
+
+## Running the Project
+
+Start the development server by running the following command:
+
+```npm run dev```
+
+After a few seconds, the project will start, and you can access it at ```http://localhost:3000``` in your default browser.
