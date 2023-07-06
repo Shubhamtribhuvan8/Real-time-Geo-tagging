@@ -23,6 +23,18 @@
 
 -Real-time Updates: New images matching the current filter automatically appear in the feed without requiring a page refresh.  'like and dislike' feature for images.
 
+# Technologies Used
+The following technologies and libraries were used to implement this system:
+
+# Backend:
+Node.js: Server-side runtime environment.
+Express.js: Web application framework for building the REST API.
+MongoDB: Database for storing records.
+
+# Frontend:
+React.js: JavaScript library for building the user interface.
+MUI:React library
+
 ## Prerequisites
 
 - Node.js (version 12 or above)
