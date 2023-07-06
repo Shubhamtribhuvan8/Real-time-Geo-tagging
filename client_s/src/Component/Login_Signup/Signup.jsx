@@ -41,7 +41,10 @@ function Signup() {
 
     try {
       setLoading(true); // Start loading
-      await axios.post("http://localhost:8080/geotag/register", data);
+      await axios.post(
+        "https://fair-ruby-kingfisher-tux.cyclic.app/geotag/register",
+        data
+      );
       toast.success("Registered!");
       const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"

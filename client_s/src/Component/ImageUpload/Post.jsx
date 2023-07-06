@@ -80,7 +80,7 @@ function PostComponent() {
 
       // eslint-disable-next-line no-unused-vars
       const response = await axios.post(
-        "http://localhost:8080/geotag/image",
+        "https://fair-ruby-kingfisher-tux.cyclic.app/geotag/image",
         data
       );
 
@@ -115,7 +115,7 @@ function PostComponent() {
 
     const fetchLocationName = (latitude, longitude) => {
       axios
-        .get("http://localhost:8080/geotag/ipinfo")
+        .get("https://fair-ruby-kingfisher-tux.cyclic.app/geotag/ipinfo")
         .then((response) => {
           setLocationName2(response.data.city);
         })

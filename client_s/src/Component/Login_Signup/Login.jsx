@@ -38,7 +38,10 @@ function Login() {
 
     try {
       setLoading(true); // Start loading
-      let tokens = await axios.post("http://localhost:8080/geotag/login", data);
+      let tokens = await axios.post(
+        "https://fair-ruby-kingfisher-tux.cyclic.app/geotag/login",
+        data
+      );
       localStorage.setItem("papa", tokens.data.user.token);
       const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"

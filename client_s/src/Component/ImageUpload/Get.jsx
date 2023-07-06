@@ -47,7 +47,7 @@ const GetComponent = () => {
     console.log(selectedFilter);
     try {
       const response = await axios.get(
-        `http://localhost:8080/geotag/image?filter=${selectedFilter}`
+        `https://fair-ruby-kingfisher-tux.cyclic.app/geotag/image?filter=${selectedFilter}`
       );
       setAllDetails(response.data);
     } catch (error) {
@@ -57,7 +57,9 @@ const GetComponent = () => {
 
   const handleDelete = async (_id) => {
     try {
-      await axios.delete(`http://localhost:8080/geotag/${_id}`);
+      await axios.delete(
+        `https://fair-ruby-kingfisher-tux.cyclic.app/geotag/${_id}`
+      );
       toast.success("Record deleted successfully");
     } catch (error) {
       console.error(error);
@@ -102,7 +104,7 @@ const GetComponent = () => {
           >
             <option value="">Filter By Location</option>
             <option value="Pune">Pune</option>
-            <option value="Aurangabad">Hydrabad</option>
+            <option value="Aurangabad">Aurangabad</option>
             <option value="Mumbai">Mumbai</option>
             <option value="Ahmadabad">Ahmadabad</option>
             <option value="Hydrabad">Hydrabad</option>
