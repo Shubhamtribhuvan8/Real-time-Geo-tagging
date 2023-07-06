@@ -102,6 +102,7 @@ const GetComponent = () => {
           >
             <option value="">Filter By Location</option>
             <option value="Pune">Pune</option>
+            <option value="Aurangabad">Hydrabad</option>
             <option value="Mumbai">Mumbai</option>
             <option value="Ahmadabad">Ahmadabad</option>
             <option value="Hydrabad">Hydrabad</option>
