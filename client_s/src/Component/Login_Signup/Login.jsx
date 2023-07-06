@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import Signup from "./Signup";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import "./login.css";
 function Login() {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
@@ -60,7 +60,7 @@ function Login() {
   }
 
   return (
-    <>
+    <div className="apps">
       <br />
       <br />
       <Button
@@ -83,7 +83,7 @@ function Login() {
             id="example-custom-modal-styling-title"
             style={{ textAlign: "center" }}
           >
-            Login in Geotag App
+            Login in Geotagging-App
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -120,7 +120,7 @@ function Login() {
           <Signup />
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   );
 }
 

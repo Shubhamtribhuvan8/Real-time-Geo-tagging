@@ -74,7 +74,7 @@ function Signup() {
             id="example-custom-modal-styling-title"
             style={{ textAlign: "center" }}
           >
-            Create an Account in Geotag App
+            Create an Account in Geotagging-App
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

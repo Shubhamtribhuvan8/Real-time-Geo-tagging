@@ -21,6 +21,7 @@ const GetComponent = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [token, setToken] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
 
@@ -63,8 +64,11 @@ const GetComponent = () => {
       toast.error("Failed to delete record");
     }
   };
-  const LikePost = () => {
-    setLiked(!liked);
+  const LikePost = (index) => {
+    const updatedDetails = [...Details];
+    updatedDetails[index].liked = !updatedDetails[index].liked;
+    setAllDetails(updatedDetails);
+    setLiked(false);
   };
 
   return (
@@ -113,7 +117,7 @@ const GetComponent = () => {
         }}
       >
         {Details &&
-          Details.map((record) => (
+          Details.map((record, index) => (
             <Card
               elevation={3}
               key={record._id}
@@ -163,10 +167,13 @@ const GetComponent = () => {
                       alignItems: "center",
                     }}
                   >
-                    {liked ? (
-                      <FavoriteIcon color="error" onClick={LikePost} />
+                    {record.liked ? (
+                      <FavoriteIcon
+                        color="error"
+                        onClick={() => LikePost(index)}
+                      />
                     ) : (
-                      <FavoriteBorderIcon onClick={LikePost} />
+                      <FavoriteBorderIcon onClick={() => LikePost(index)} />
                     )}
                     <Button onClick={() => handleDelete(record._id)}>
                       <DeleteIcon />
