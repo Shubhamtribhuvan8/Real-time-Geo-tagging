@@ -5,7 +5,7 @@
 
 ## What it is ?
 ![front](https://github.com/Shubhamtribhuvan8/Real-time-Geo-tagging/assets/106821254/ae9b0c8e-cc7f-44de-8c5a-413ea2365750)
-![data](https://github.com/Shubhamtribhuvan8/Real-time-Geo-tagging/assets/106821254/d370afa0-3ff6-4f71-ac17-7f1ed802309c)
+![data](https://github.com/Shubhamtribhuvan8/Real-time-Geo-tagging/assets/106821254/d52c5901-8cd2-48cb-8f68-0352d9a15ea4)
 ![mangodb](https://github.com/Shubhamtribhuvan8/Real-time-Geo-tagging/assets/106821254/c07f8f0f-71ba-47b2-94b8-be39d88595ca)
 
 
