@@ -33,6 +33,7 @@ Clone the repository by running the following command in your terminal:
 
 ```git clone https://github.com/Shubhamtribhuvan8/Real-time-Geo-tagging.git```
 
+# Front-End
 ### Project Setup(Front-End)
 
  Navigate to the project folder using the following command:
@@ -51,6 +52,9 @@ Start the development server by running the following command:
 
 After a few seconds, the project will start, and you can access it at ```http://localhost:3000``` in your default browser.
 
+
+
+# Back-End
 ### Project Setup(Back-End)
 
  Navigate to the project folder using the following command:
