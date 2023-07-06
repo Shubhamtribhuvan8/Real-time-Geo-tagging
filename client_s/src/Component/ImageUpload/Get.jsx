@@ -32,7 +32,7 @@ const GetComponent = () => {
     } else {
       setTimeout(() => {
         navigate("/");
-      }, 3000);
+      }, 1000);
       toast.error("Login First!");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,8 +78,8 @@ const GetComponent = () => {
           gap: "3px",
         }}
       >
-        {token && <Logout />}
         {token && <PostComponent />}
+        {token && <Logout />}
       </Box>
       <br />
       <Box
@@ -89,18 +89,20 @@ const GetComponent = () => {
           alignItems: "center",
         }}
       >
-        <Form.Select
-          size="lg"
-          style={{ width: "14rem", textAlign: "initial" }}
-          onChange={handleFilterChange}
-          value={selectedFilter || ""}
-        >
-          <option value="">Filter By Category</option>
-          <option value="Pune">Pune</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Ahmadabad">Ahmadabad</option>
-          <option value="Hydrabad">Hydrabad</option>
-        </Form.Select>
+        {token && (
+          <Form.Select
+            size="lg"
+            style={{ width: "14rem", textAlign: "initial" }}
+            onChange={handleFilterChange}
+            value={selectedFilter || ""}
+          >
+            <option value="">Filter By Category</option>
+            <option value="Pune">Pune</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Ahmadabad">Ahmadabad</option>
+            <option value="Hydrabad">Hydrabad</option>
+          </Form.Select>
+        )}
       </Box>
       <br />
       <div
