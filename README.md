@@ -1,5 +1,5 @@
 # Real-time Geo-tagging Image Sharing Platform
-## [Deployment Link](https://real-time-geo-tagging-oql593z8i-shubhamtribhuvan8.vercel.app/)
+## [Deployment Link](https://real-time-geo-tagging-mfjjyiy72-shubhamtribhuvan8.vercel.app/)
 
 ## [Implementation  Video](https://drive.google.com/file/d/1NrYXF1Eh2NHhxjDiXay5pvGrCEb8gQGw/view?usp=sharing)
 
