@@ -8,7 +8,6 @@ import TextField from "@mui/material/TextField";
 import Signup from "./Signup";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-import "./login.css";
 function Login() {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
@@ -65,9 +64,7 @@ function Login() {
   }
 
   return (
-    <div className="apps">
-      <br />
-      <br />
+    <div>
       <Button
         variant="dark"
         style={{ backgroundColor: "darkmagenta", fontSize: "16px" }}

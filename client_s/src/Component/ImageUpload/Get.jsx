@@ -34,7 +34,11 @@ const GetComponent = () => {
     } else {
       setTimeout(() => {
         navigate("/");
-      }, 1000);
+      }, 1);
+      const warningSound = new Audio(
+        "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-button.m4a"
+      );
+      warningSound.play();
       toast.error("Login First!");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,9 +66,17 @@ const GetComponent = () => {
         `https://fair-ruby-kingfisher-tux.cyclic.app/geotag/${_id}`
       );
       toast.success("Record deleted successfully");
+      const successSound = new Audio(
+        "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
+      );
+      successSound.play();
     } catch (error) {
       console.error(error);
       toast.error("Failed to delete record");
+      const warningSound = new Audio(
+        "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-button.m4a"
+      );
+      warningSound.play();
     }
   };
   const LikePost = (index) => {
